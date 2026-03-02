@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: k8s-webapp-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: k8s-webapp
+  template:
+    metadata:
+      labels:
+        app: k8s-webapp
+    spec:
+      containers:
+      - name: k8s-webapp
+        image: dopester03/k8s_webapp:v1
+        ports:
+        - containerPort: 5000
+        env:
+        - name: ENV
+          value: "production"
